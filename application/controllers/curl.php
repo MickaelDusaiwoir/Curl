@@ -185,17 +185,39 @@ class Curl extends CI_Controller {
     
     public function voir(){
         
+        $this->load->helper('form');
+        
         $this->load->model('M_Curl');
         
         $id = $this->uri->segment(3);
         
         $dataArticle['donnee'] = $this->M_Curl->voir($id);
         
-        $dataLayout['vue'] = $this->load->view('modifier',$dataArticle,true);
+        $dataLayout['vue'] = $this->load->view('voir',$dataArticle,true);
         
         $dataLayout['titre'] = 'Modifier un article';
         
         $this->load->view('layout', $dataLayout);
+    }
+    
+    public function modifier(){
+        
+        $this->load->model('M_Curl');
+        
+        $titre = $this->input->post('titre');
+        
+        $description = $this->input->post('descri');
+        
+        $image = $this->input->post('choix');
+        
+        $url = $this->input->post('url');    
+        
+        $id = $this->input->post('id');
+        
+        $data = array('titre' => $titre, 'image' => $image, 'description' => $description, 'url' => $url, 'id' => $id);
+        
+        $this->M_Curl->modifier($data);
+        
     }
 
 }

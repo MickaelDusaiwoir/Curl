@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title><?= $titre ?></title>
-        <style type="text/css" href="<?= site_url()?>web/css/styles.css"></style>
+        <link rel="stylesheet" type="text/css" href="<?= site_url() . CSS_DIR?>style.css" media="screen" />
     </head>
     <body>
         <div id="container">

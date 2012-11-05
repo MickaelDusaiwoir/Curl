@@ -1,0 +1,130 @@
+@import "grid.less";
+
+body{    
+    font: normal 15px Helvetica, Arial, Sans-Serif;
+    line-height: 1.4;
+    overflow: scroll;
+    width: 960px;
+    margin: 0 auto;
+}
+
+#container{
+    .column(10);
+    margin: 0 auto;
+    border: 2px solid #888;
+    margin-top: 1em;
+}
+
+h1{
+    font-size: 1.6em;
+    margin-top: 0.25em;
+    padding: 0.25em 1em;
+}
+
+section{
+    padding: 0 1.5em;
+}
+
+article{
+    min-height: 13.5em;
+    margin: 1em 0em;
+    border: 2px solid #888;
+    padding: 1em;
+}
+
+article:after{
+    clear:both;
+}
+
+a img{
+    display: inline;
+    float:left;
+    margin-right: 1em;
+    border: 1px solid black;
+}
+
+a:hover img{
+    box-shadow: 5px 5px 1px rgba(0,0,0,0.5);
+}
+
+h2 a, h2{
+    display: inline-block;
+    width: 16em;
+    margin-top: 0;
+    font-size: 1.2em;
+}
+
+h2 a:hover{
+    text-decoration: none;
+}
+
+a#supprimer, a#modifier{
+    display: inline;
+    margin-right: 0.5em;
+    font-size: 0.8em;
+}
+
+#afficher form{
+    border: 2px solid #888;
+    padding: 0.5em 1em;
+}
+
+#afficher label{
+    font-size: 1.2em;
+}
+
+#url {
+    width: 30.5em;
+    font-size: 1.2em;
+    display:inline-block;
+    margin : 0.5em 0.5em;
+}
+
+#afficher input[type=submit]{
+    font-size: 1.2em;
+}
+
+#choisir form{
+    border: 2px solid #888;
+    padding: 1em;
+    margin-bottom: 1.5em;
+}
+
+#choisir label, #choisir textarea{
+    font-size: 1.2em;
+    margin-right: 0.5em;
+}
+
+#title{
+    margin-bottom: 1em;
+}
+
+#title label{
+    display: inline-block;
+    width: 5em;
+    text-align: right;
+    margin-right: 0.7em;
+}
+
+#titre, #descri{
+    display: inline-block;
+    width: 30em;
+    font-size: 1.2em;
+    padding: 0 0.5em;
+}
+
+.images{
+    max-height: 12.2em;
+    max-width: 12.2em
+}
+
+.images img{
+    display: inline-block;
+    max-width: 12.2em;
+    max-height: 12.2em;
+    vertical-align: middle;
+}
+
+#choisir input[type=radio]{
+    visibility: hidden;
+}

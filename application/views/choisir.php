@@ -1,18 +1,22 @@
-<section>
+<section id="choisir">
+    <?php
     echo form_open('curl/ajouter', array('method' => 'post'));
-
+    echo '<div id="title">';
     echo form_label('Titre', 'titre');
     echo form_input(array('name' => 'titre', 'value' => $title, 'id' => 'titre'));
+    echo '</div>';
+    echo '<div>';
     echo form_label('Description', 'descri');
     ?>
     <textarea name="descri" id="descri" rows="4" cols="50"><?= $description ?></textarea>
+    </div>
     <?php
     if ($tabSrc != '') :
         $i = 0;
 
         foreach ($tabSrc as $src) :
             ?>
-            <label for="<?= $i ?>"><img src="<?= $src ?>" /></label>
+            <label for="<?= $i ?>" class="images"><img src="<?= $src ?>" /></label>
             <?php
             echo form_input(array('name' => 'choix', 'id' => $i, 'type' => 'radio', 'value' => $src));
 
