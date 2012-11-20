@@ -5,7 +5,7 @@
     echo form_label('Titre', 'titre');
     echo form_input(array('name' => 'titre', 'value' => $title, 'id' => 'titre'));
     echo '</div>';
-    echo '<div>';
+    echo '<div id="pDescri">';
     echo form_label('Description', 'descri');
     ?>
     <textarea name="descri" id="descri" rows="4" cols="50"><?= $description ?></textarea>

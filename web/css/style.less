@@ -9,9 +9,8 @@ body{
 }
 
 #container{
-    .column(10);
+    width: 52em;
     margin: 0 auto;
-    border: 2px solid #888;
     margin-top: 1em;
 }
 
@@ -23,45 +22,6 @@ h1{
 
 section{
     padding: 0 1.5em;
-}
-
-article{
-    min-height: 13.5em;
-    margin: 1em 0em;
-    border: 2px solid #888;
-    padding: 1em;
-}
-
-article:after{
-    clear:both;
-}
-
-a img{
-    display: inline;
-    float:left;
-    margin-right: 1em;
-    border: 1px solid black;
-}
-
-a:hover img{
-    box-shadow: 5px 5px 1px rgba(0,0,0,0.5);
-}
-
-h2 a, h2{
-    display: inline-block;
-    width: 16em;
-    margin-top: 0;
-    font-size: 1.2em;
-}
-
-h2 a:hover{
-    text-decoration: none;
-}
-
-a#supprimer, a#modifier{
-    display: inline;
-    margin-right: 0.5em;
-    font-size: 0.8em;
 }
 
 #afficher form{
@@ -80,9 +40,128 @@ a#supprimer, a#modifier{
     margin : 0.5em 0.5em;
 }
 
-#afficher input[type=submit]{
+#afficher input[type=submit], #voir input[type=submit]{
     font-size: 1.2em;
 }
+
+article{
+    margin-top: 1em;
+    position: relative;
+}
+
+a img{
+    text-decoration: none;
+    border: 2px solid #888;
+}
+
+a:hover img{
+    box-shadow: 2px 2px 0 0 #888;
+}
+
+article div, #voir div{
+    display: inline-block;
+    width: 30.6em;
+    margin: 0 0.66em;
+    float: right;
+}
+
+div h2 {
+    margin: 0;
+}
+
+div p {
+    margin-right: 1.5em;
+}
+
+article div:after {
+    clear: both;
+}
+
+aside{
+    width: 4em;
+    position: absolute;
+    top:0;
+    right: -2em;
+}
+
+#supprimer, #modifier{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    text-indent: -9999px;
+    background-image: url("../img/spriteMS.png");
+}
+
+#supprimer{
+    background-position: 0 0px;
+}
+
+#modifier{
+    background-position: 32px 0;
+}
+
+
+#voir{
+    border: 2px solid #888;
+    padding: 2em 1em 1em 1em;
+    position: relative;
+}
+
+#voir form{
+    vertical-align: top;
+}
+
+#voir div:after{
+    clear: both;
+}
+
+#voir input[type=radio]{
+    visibility: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+#voir #titre, #voir #descri{
+    display: inline-block;
+    width: 24.5em;
+    font-size: 1.2em;
+    padding: 0 0.5em;
+    margin-bottom: 1em;
+}
+
+#voir input[type=submit]{
+    position: absolute;
+    right: 1.1em;
+    top: 10.5em;
+}
+
+#voir a {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background-color:#f9f9f9;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#666666;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #ffffff;
+}
+#voir a:hover {
+	background-color:#e9e9e9;
+}
+#voir a:active {
+	position:relative;
+	top:1px;
+}
+
+
 
 #choisir form{
     border: 2px solid #888;
@@ -97,6 +176,7 @@ a#supprimer, a#modifier{
 
 #title{
     margin-bottom: 1em;
+    display: block;
 }
 
 #title label{
@@ -106,11 +186,15 @@ a#supprimer, a#modifier{
     margin-right: 0.7em;
 }
 
-#titre, #descri{
+#choisir #titre, #choisir #descri{
     display: inline-block;
     width: 30em;
     font-size: 1.2em;
     padding: 0 0.5em;
+}
+
+#pDescri label{
+    vertical-align: top;
 }
 
 .images{
@@ -125,6 +209,4 @@ a#supprimer, a#modifier{
     vertical-align: middle;
 }
 
-#choisir input[type=radio]{
-    visibility: hidden;
-}
+
