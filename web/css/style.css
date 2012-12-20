@@ -14,18 +14,15 @@ body {
   font: normal 15px Helvetica, Arial, Sans-Serif;
   line-height: 1.4;
   overflow: scroll;
-  width: 960px;
-  margin: 0 auto;
 }
 #container {
-  width: 52em;
+  width: 64em;
   margin: 0 auto;
   margin-top: 1em;
 }
 h1 {
   font-size: 1.6em;
-  margin-top: 0.25em;
-  padding: 0.25em 1em;
+  margin: 0 10px;
 }
 section {
   padding: 0 1.5em;
@@ -33,45 +30,54 @@ section {
 #afficher form {
   border: 2px solid #888;
   padding: 0.5em 1em;
+  margin: 0 0.6em 1.5em 0.6em;
 }
 #afficher label {
   font-size: 1.2em;
 }
 #url {
-  width: 30.5em;
+  width: 40.8em;
   font-size: 1.2em;
   display: inline-block;
-  margin: 0.5em 0.5em;
+  margin: 0.5em 1em 0.5em 0.5em;
+  padding-left: 0.6em;
+}
+#afficher article {
+  margin-bottom: 2em;
+}
+#afficher article div {
+  display: inline-block;
+  width: 620px;
+  margin: 0 10px;
+  vertical-align: top;
+}
+div h2 {
+  margin-top: 0;
+}
+#lien {
+  font-size: 0.85em;
+}
+#afficher img {
+  border: 2px solid rgba(0, 0, 0, 0.8);
+}
+#afficher img:hover {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(1.1);
 }
 #afficher input[type=submit],
 #voir input[type=submit] {
   font-size: 1.2em;
 }
 article {
-  margin-top: 1em;
   position: relative;
-}
-a img {
-  text-decoration: none;
-  border: 2px solid #888;
-}
-a:hover img {
-  box-shadow: 2px 2px 0 0 #888;
-}
-article div,
-#voir div {
   display: inline-block;
-  width: 30.6em;
-  margin: 0 0.66em;
-  float: right;
+  width: 940px;
+  margin: 0 10px;
 }
-div h2 {
-  margin: 0;
-}
-div p {
-  margin-right: 1.5em;
-}
-article div:after {
+article:after {
   clear: both;
 }
 aside {

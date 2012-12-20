@@ -1,4 +1,4 @@
-<section id="afficher">
+<div id="afficher">
     <?= form_open('curl/choisir', array('method' => 'post')); ?>
     <?= form_label('Url', 'url'); ?>
     <?= form_input(array('name' => 'url', 'id' => 'url', 'placeholder' => 'Introduisez une url !')) ?>
@@ -13,10 +13,8 @@
                 <p>
                     <?= $donnee->description ?>
                 </p> 
-                <p>
-                    <small>
-                        Site : <?= anchor($donnee->url ,$donnee->titre,array('title' => 'Se rendre sur le site')); ?>
-                    </small>
+                <p id="lien">
+                    Site : <?= anchor($donnee->url, $donnee->titre, array('title' => 'Se rendre sur le site')); ?>
                 </p>
             </div>
             <aside>
@@ -25,5 +23,5 @@
             </aside>
         </article>        
     <? endforeach; ?>
-</section>
+</div>
 
