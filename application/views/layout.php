@@ -13,5 +13,7 @@
             <?= $vue?>
             
         </div>
+        <script src="<?= site_url() . JS_DIR?>jquery.js"></script>
+        <script src="<?= site_url() . JS_DIR?>script.js"></script>
     </body>
 </html>

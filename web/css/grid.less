@@ -50,22 +50,13 @@ body {
 	.clearfix;
 }
 .column(@x,@columns:@columns) {
-display: inline-block;
+	display: inline-block;
+	//float: left;
 	width: @total-width*((((@gutter-width+@column-width)*@x)-@gutter-width) / @gridsystem-width);
 	margin: 0 @total-width*((@gutter-width*.5)/@gridsystem-width);
 	// *width: @total-width*((((@gutter-width+@column-width)*@x)-@gutter-width) / @gridsystem-width)-@correction;
 	// *margin: 0 @total-width*((@gutter-width*.5)/@gridsystem-width)-@correction;
 }
-
-.column1(@x,@columns:@columns) {
-	display: inline;
-	float: left;
-	width: @total-width*((((@gutter-width+@column-width)*@x)-@gutter-width) / @gridsystem-width);
-	margin: 0 @total-width*((@gutter-width*.5)/@gridsystem-width);
-	// *width: @total-width*((((@gutter-width+@column-width)*@x)-@gutter-width) / @gridsystem-width)-@correction;
-	// *margin: 0 @total-width*((@gutter-width*.5)/@gridsystem-width)-@correction;
-}
-
 .push(@offset:1) {
 	margin-left: @total-width*(((@gutter-width+@column-width)*@offset) / @gridsystem-width) + @total-width*((@gutter-width*.5)/@gridsystem-width);
 }

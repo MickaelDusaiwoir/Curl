@@ -40,6 +40,7 @@ define('THUMBS_DIR','web/images/vignettes/');
 define('IMAGES_DIR','web/images/originales/');
 define('UPLOADS_DIR','web/uploads/');
 define('CSS_DIR','web/css/');
+define('JS_DIR','web/js/');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

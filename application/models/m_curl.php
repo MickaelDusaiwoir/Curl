@@ -34,8 +34,10 @@ class M_Curl extends CI_Model {
         
         $this->db->where('id', $data['id']);       
         
-        $this->db->update('curl', array('url' => $data['url'], 'titre' => $data['titre'], 'description' => $data['description'], 'image' => $data['image']));
+        //$this->db->update('curl', array('url' => $data['url'], 'titre' => $data['titre'], 'description' => $data['description'], 'image' => $data['image']));
      
+        $this->db->update('curl', array('url' => $data['url'], 'titre' => $data['titre'], 'description' => $data['description']));
+        
         redirect('curl/index');
     }
 
