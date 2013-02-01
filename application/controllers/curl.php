@@ -26,6 +26,7 @@ class Curl extends CI_Controller {
 
     public function index() {
         $this->load->helper('form');
+        $this->load->library('session');
 
         $this->afficher();
     }
@@ -36,7 +37,7 @@ class Curl extends CI_Controller {
 
         $dataListe['donnees'] = $this->M_Curl->lister();
 
-        $dataLayout['titre'] = 'Partage tes liens';
+        $dataLayout['titre'] = 'Partagez vos liens';
         $dataLayout['vue'] = $this->load->view('afficher', $dataListe, true);
 
         $this->load->view('layout', $dataLayout);
@@ -45,13 +46,14 @@ class Curl extends CI_Controller {
     public function choisir() {
         $this->load->helper('form');
         $url = $this->input->post('url');
-        
+
         $title = '';
         $description = '';
         $tabSrc = '';
 
-        if ($url) {
-            
+
+        if (filter_var($url, FILTER_VALIDATE_URL)) {
+
             $ch = curl_init();
 
             curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -78,34 +80,46 @@ class Curl extends CI_Controller {
             }
 
             $allImage = $dom->getElementsByTagName('img');
-            
+
             foreach ($allImage as $image) {
 
                 $tmp = $image->getAttribute('src');
-                
+
                 if ($tmp) {
                     $img = $this->rel2abs($tmp, $url);
                     $taille = getimagesize($img);
                     if ($taille[0] > 100) {
-                      $tabSrc[] = $img;
+                        $tabSrc[] = $img;
                     }
                 }
             }
-        }
 
-        $dataUrl['description'] = utf8_encode(utf8_decode($description));
+            
+            $this->session->sess_destroy('url');
+            
 
-        $dataUrl['url'] = $url;
+            $dataUrl['description'] = utf8_encode(utf8_decode($description));
+
+            $dataUrl['url'] = $url;
+
+            $dataUrl['title'] = $title;
+
+            $dataUrl['tabSrc'] = $tabSrc;
+
+            $dataLayout['titre'] = 'Choisir une vigniettes';
+
+            $dataLayout['vue'] = $this->load->view('choisir', $dataUrl, true);
+
+            $this->load->view('layout', $dataLayout);
+            
+            
+        }else {
+         
+            $this->session->set_userdata('url',TRUE);
+            redirect('curl/index');
+            
+        }       
         
-        $dataUrl['title'] = $title;
-
-        $dataUrl['tabSrc'] = $tabSrc;
-
-        $dataLayout['titre'] = 'Choisir une vigniettes';
-
-        $dataLayout['vue'] = $this->load->view('choisir', $dataUrl, true);
-
-        $this->load->view('layout', $dataLayout);
     }
 
     private function rel2abs($tmp, $url) {
@@ -116,16 +130,16 @@ class Curl extends CI_Controller {
             return $url . $tmp;
 
         extract(parse_url($url));
- 
-        $scheme   = isset($parsed_url['scheme']) ? $parsed_url['scheme'] : 'http'; 
+
+        $scheme = isset($parsed_url['scheme']) ? $parsed_url['scheme'] : 'http';
         //$host     = isset($parsed_url['host']) ? $parsed_url['host'] : ''; 
         //$path     = isset($parsed_url['path']) ? $parsed_url['path'] : '';
-        
+
         $path = preg_replace('#/[^/]*$#', '', $path);
 
         if ($tmp[0] == '/')
             $path = '';
-        
+
         $abs = "$host$path/$tmp";
 
         $re = array('#(/\.?/)#', '#/(?!\.\.)[^/]+/\.\./#');
@@ -146,78 +160,75 @@ class Curl extends CI_Controller {
         $titre = $this->input->post('titre');
         $description = $this->input->post('descri');
         $urlImage = $this->input->post('choix');
-        $url = $this->input->post('url');        
-        
+        $url = $this->input->post('url');
+
         $extImage = explode('.', $urlImage);
-        $nom = 'f' . time() . rand(0,1000) . '.' . $extImage[3];
-            
+        $nom = 'f' . time() . rand(0, 1000) . '.' . $extImage[3];
+
         $image = file_get_contents($urlImage);
-        file_put_contents('web/uploads/'.$nom, $image);
+        file_put_contents('web/uploads/' . $nom, $image);
 
         $config['image_library'] = 'gd2';
-        $config['source_image'] = 'web/uploads/'.$nom;
+        $config['source_image'] = 'web/uploads/' . $nom;
         $config['create_thumb'] = FALSE;
         $config['maintain_ratio'] = TRUE;
         $config['width'] = 250;
         $config['height'] = 200;
 
         $this->image_lib->initialize($config);
-        
+
         if (!$this->image_lib->resize()) {
             echo $this->image_lib->display_errors();
         }
-        
+
         $data = array('titre' => $titre, 'image' => $nom, 'description' => $description, 'url' => $url);
-        
+
         $this->M_Curl->ajouter($data);
-        
     }
-    
-    public function supprimer(){
-        
+
+    public function supprimer() {
+
         $this->load->model('M_Curl');
-        
+
         $id = $this->uri->segment(3);
-        
+
         $this->M_Curl->supprimer($id);
-        
     }
-    
-    public function voir(){
-        
+
+    public function voir() {
+
         $this->load->helper('form');
-        
+
         $this->load->model('M_Curl');
-        
+
         $id = $this->uri->segment(3);
-        
+
         $dataArticle['donnee'] = $this->M_Curl->voir($id);
-        
-        $dataLayout['vue'] = $this->load->view('voir',$dataArticle,true);
-        
+
+        $dataLayout['vue'] = $this->load->view('voir', $dataArticle, true);
+
         $dataLayout['titre'] = 'Modifier un article';
-        
+
         $this->load->view('layout', $dataLayout);
     }
-    
-    public function modifier(){
-        
+
+    public function modifier() {
+
         $this->load->model('M_Curl');
-        
+
         $titre = $this->input->post('titre');
-        
+
         $description = $this->input->post('descri');
-        
+
         $image = $this->input->post('choix');
-        
-        $url = $this->input->post('url');    
-        
+
+        $url = $this->input->post('url');
+
         $id = $this->input->post('id');
-        
+
         $data = array('titre' => $titre, 'image' => $image, 'description' => $description, 'url' => $url, 'id' => $id);
-        
+
         $this->M_Curl->modifier($data);
-        
     }
 
 }

@@ -1,5 +1,7 @@
 <section id="voir">
-    
+    <h3>
+        <?= $donnee->titre; ?>
+    </h3>
     <img src="<?= site_url() . UPLOADS_DIR . $donnee->image ?>" />
     
     <?php

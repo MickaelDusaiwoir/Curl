@@ -1,4 +1,7 @@
 <section id="choisir">
+    <h3>
+        <?= $title; ?>
+    </h3>
     <?php
     echo form_open('curl/ajouter', array('method' => 'post'));
     echo '<div id="title">';

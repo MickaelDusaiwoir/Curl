@@ -11,6 +11,7 @@ class M_Curl extends CI_Model {
 
     public function lister() {
 
+        $this->db->order_by("id", "desc");
         $query = $this->db->get('curl');
 
         return $query->result();
