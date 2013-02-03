@@ -23,7 +23,7 @@
             </p>
             <div class="action">
                 <?= anchor('curl/voir/' . $donnee->id, 'Modifier', array('title' => 'Modifier cet article', 'class' => 'modifier')); ?>
-                <?= anchor('curl/supprimer/' . $donnee->id, 'Supprimer', array('title' => 'Supprimer cet article', 'class' => 'supprimer')); ?>   
+                <?= anchor('curl/supprimer/' . $donnee->id, 'Supprimer', array('title' => 'Supprimer cet article', 'class' => 'supprimer','rel' => $donnee->url)); ?>   
             </div>
         </article>        
     <? endforeach; ?>
